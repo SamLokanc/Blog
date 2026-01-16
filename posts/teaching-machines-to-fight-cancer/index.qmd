@@ -1,5 +1,6 @@
 ---
-title: "Teaching Machines to Fight Cancer: Using Machine Learning to Design Personalized Cancer Vaccines"
+title: "Teaching Machines to Fight Cancer"
+subtitle: "Using Machine Learning to Design Personalized Cancer Vaccines"
 author: "Sam Lokanc"
 date: "2026-01-17"
 categories: [review, immunology, oncology, machine learning]
