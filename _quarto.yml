@@ -1,8 +1,9 @@
 project:
   type: website
+  output-dir: docs
 
 website:
-  title: "Teaching Machines to Fight Cancer: Using Machine Learning to Design Personalized Cancer Vaccines"
+  title: "blog"
   navbar:
     right:
       - about.qmd

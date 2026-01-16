@@ -1,5 +1,5 @@
 ---
-title: "Teaching Machines to Fight Cancer: Using Machine Learning to Design Personalized Cancer Vaccines"
+title: "blog"
 listing:
   contents: posts
   sort: "date desc"
