@@ -22,7 +22,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -159,11 +179,68 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<p>This is a test for my blog</p>
+<p>Cancer presents itself as the single leading cause of death in Canada <span class="citation" data-cites="StatsCanCauseDeath">(<a href="#ref-StatsCanCauseDeath" role="doc-biblioref">Government of Canada 2026</a>)</span>. Although, conventional treatment methods such as chemotherapy, radiation therapy, and surgery are effective in a lot of cases, there are still some patients for whom these treatments are not feasible or are completely ineffective. Childhood brain tumors in particular can be difficult to treat due to the delicacy of the surrounding developing brain tissue as well as the aggressiveness typically displayed by these tumors<span class="citation" data-cites="shah2025">(<a href="#ref-shah2025" role="doc-biblioref">Shah et al. 2025</a>)</span>. In such cases the children are often left with no feasible treatment options, highlighting the need for more precise and less invasive treatment alternatives. To address this need, oncologists and immunologists have been researching patient-specific treatments called personalized cancer vaccines that aim to use the immune system to fight cancer. Recent advances in machine learning are making the design of these personalized cancer vaccines increasingly viable, offering new hope for difficult to treat pediatric brain tumors.</p>
+<p>Although personalized cancer vaccines are called <em>“Vaccines”</em> they differ from traditional vaccines in a few key ways. First, they are completely unique to a single patient; this is what “personalized” means. For example, if a personalized cancer vaccine was designed and administered to a patient with breast cancer, that vaccine would not be viable for another patient even if the other patient also had breast cancer. Second, we tend to think of traditional vaccines as preventative, but personalized cancer vaccines are mainly curative. This means that personalized cancer vaccines are given to the patient <em>after</em> cancer has developed, in an effort to cure it. Although this is their primary function they have also been shown to provide long term immunity, pointing to their ability to help fight against relapse <span class="citation" data-cites="braun2025">(<a href="#ref-braun2025" role="doc-biblioref">Braun et al. 2025</a>)</span>.</p>
+<p>Along with the potential of providing long term immunity, personalized cancer vaccines present a few other benefits over conventional treatments. One such benefit is the fact that they are highly specific. Traditional methods such as chemotherapy target cancer by killing all rapidly replicating cells in the body. This has the side effect of targeting healthy cells such as hair follicles (resulting in hair loss) and bone marrow (resulting in anemia and fatigue) <span class="citation" data-cites="anand2023">(<a href="#ref-anand2023" role="doc-biblioref">Anand et al. 2023</a>)</span>. Therefore, this high specificity allows for reduced off-target effects that are common in chemo and radio therapy. This is specifically desirable for pediatric patients as it can help to reduce the harm that these effects can have on the developing body.</p>
+<p>Although leveraging the immune system against cancer seems like a difficult task, the body actually naturally uses the immune system to fight cancer. This is a process known as the cancer immunity cycle (<a href="#fig-cancer-immunity" class="quarto-xref">Figure&nbsp;1</a>) and it begins with the cancer cell dying and releasing tumor specific antigens (TSAs), which are just sliced up proteins that are unique to the cancer cell. These released TSAs are then used to train T cells (the killers of the immune system) so that they can recognize and eliminate cells with these antigens <span class="citation" data-cites="chen2013">(<a href="#ref-chen2013" role="doc-biblioref">Chen and Mellman 2013</a>)</span>. Importantly, these TSAs need to be presented on the surface of the cancer cell so that they are readily accessible by the circulating T cells. There are specific complexes that are used for presenting antigens on the surface of the cancer cell called major histocompatibility (MHC) complexes <span class="citation" data-cites="chen2013">(<a href="#ref-chen2013" role="doc-biblioref">Chen and Mellman 2013</a>)</span>. You can think of MHC complexes as billboards for what is inside the cell, advertising some of its contents. However, based on their sequence, certain proteins are more likely to attach to these MHC complexes. The struggle lies in identifying which of these proteins are likely to attach to MHC complexes, and therefore be presented on the surface of the cancer cell. This is where machine learning can help to address the challenge of designing cancer vaccines.</p>
+<div id="fig-cancer-immunity" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-cancer-immunity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="cancer_immunity_cycle.jpg" class="img-fluid figure-img" alt="Cancer immunity cycle diagram adapted from Chen et al. 2013"></p>
+<figcaption>Cancer immunity cycle (adapted from <span class="citation" data-cites="chen2013">Chen and Mellman (<a href="#ref-chen2013" role="doc-biblioref">2013</a>)</span>).</figcaption>
+</figure>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-cancer-immunity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1
+</figcaption>
+</figure>
+</div>
+<p>One such breakthrough within the last ten years has been the development of the neural network netMHCpan <span class="citation" data-cites="jurtz2017">(<a href="#ref-jurtz2017" role="doc-biblioref">Jurtz et al. 2017</a>)</span>. This neural network is trained on a library of 85,217 proteins and their ability to be presented on the surface of a cancer cell (MHC binding affinity). To measure the performance of the model, the authors used the area under the receiver operating curve (AUC) metric, where a value of AUC=0.5 indicates random performance and a value of AUC=1.0 indicates perfect performance. The netMHCpan model was able to consistently demonstrate an AUC between 0.9 and 1.0, indicating it is excellent at predicting these proteins <span class="citation" data-cites="jurtz2017">(<a href="#ref-jurtz2017" role="doc-biblioref">Jurtz et al. 2017</a>)</span>. The main benefits of using achine learning over traditional lab approaches are speed, scalability, and cost efficiency. Directly following from these benefits is the ability for researchers to justifiably design personalized cancer vaccines for patients who have no other alternatives.</p>
+<p>The efficacy of machine learning in this space is demonstrated by a study in which netMHCpan was used to generate therapies for eight patients with brain cancer (glioblastoma in particular) <span class="citation" data-cites="keskin2019">(<a href="#ref-keskin2019" role="doc-biblioref">Keskin et al. 2019</a>)</span>. Out of these 8 patients an anti cancer immune response was measured in five. A separate study was similarly able to generate these proteins for glioblastoma patients for which an immune response was observed in 87 out of 90 patients <span class="citation" data-cites="latzer2024">(<a href="#ref-latzer2024" role="doc-biblioref">Latzer et al. 2024</a>)</span>. These two studies highlight the utility of machine learning methods in the generation of novel cancer immune therapies.</p>
+<p>While the field of personalized cancer vaccines looks promising, there are still several challenges that need to be addressed to make them a viable option. The primary issue is time. While the use of machine learning has greatly sped up the design process of these vaccines, the manufacturing process can still take a while. For cancer patients especially, this is not ideal because cancers will often adapt to develop immune resistance in later stages <span class="citation" data-cites="wang2020">(<a href="#ref-wang2020" role="doc-biblioref">Wang et al. 2020</a>)</span>. Furthermore, immune activation is a much more complex process than just MHC binding. That being said work is being done to use machine learning and other computational methods to help predict for other key processes of this pathway such as proteasomal processing <span class="citation" data-cites="nielsen2005">(<a href="#ref-nielsen2005" role="doc-biblioref">Nielsen et al. 2005</a>)</span>, and T cell receptor activation <span class="citation" data-cites="weber2024">(<a href="#ref-weber2024" role="doc-biblioref">Weber, Pélissier, and Martı́nez 2024</a>)</span>. The rapid advancements in machine learning, genetic and protein sequencing, as well as improved accessibility to vast biological data sets mean that these problems are becoming more and more addressable every day.</p>
+<p>Conventional cancer treatments such as chemotherapy, radiation therapy, and surgery, while often effective, are limited by toxicity, lack of specificity, and infeasibility in delicate contexts like pediatric brain tumors. Personalized cancer vaccines offer a promising alternative by harnessing the patient’s own immune system to precisely target tumor specific antigens, reducing off-target damage and potentially providing long-term immunity. Crucially, advances in machine learning have made this approach practical by rapidly identifying viable vaccine targets that would be infeasible to discover experimentally. Although challenges such as manufacturing time and immune complexity remain, this new approach to vaccine design represents a powerful and transformative avenue for treating childhood brain tumors and other hard-to-treat cancers.</p>
 
 
 
-</main> <!-- /main -->
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-anand2023" class="csl-entry" role="listitem">
+Anand, Uttpal, Abhijit Dey, Arvind K Singh Chandel, Rupa Sanyal, Amarnath Mishra, Devendra Kumar Pandey, Valentina De Falco, et al. 2023. <span>“Cancer Chemotherapy and Beyond: Current Status, Drug Candidates, Associated Risks and Progress in Targeted Therapeutics.”</span> <em>Genes &amp; Diseases</em> 10 (4): 1367–1401.
+</div>
+<div id="ref-braun2025" class="csl-entry" role="listitem">
+Braun, David A, Giorgia Moranzoni, Vipheaviny Chea, Bradley A McGregor, Eryn Blass, Chloe R Tu, Allison P Vanasse, et al. 2025. <span>“A Neoantigen Vaccine Generates Antitumour Immunity in Renal Cell Carcinoma.”</span> <em>Nature</em> 639 (8054): 474–82.
+</div>
+<div id="ref-chen2013" class="csl-entry" role="listitem">
+Chen, Daniel S, and Ira Mellman. 2013. <span>“Oncology Meets Immunology: The Cancer-Immunity Cycle.”</span> <em>Immunity</em> 39 (1): 1–10.
+</div>
+<div id="ref-StatsCanCauseDeath" class="csl-entry" role="listitem">
+Government of Canada, Statistics Canada. 2026. <span>“Leading Causes of Death, Total Population, by Age Group.”</span> Government of Canada, Statistics Canada. <a href="https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1310039401">https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=1310039401</a>.
+</div>
+<div id="ref-jurtz2017" class="csl-entry" role="listitem">
+Jurtz, Vanessa, Sinu Paul, Massimo Andreatta, Paolo Marcatili, Bjoern Peters, and Morten Nielsen. 2017. <span>“NetMHCpan-4.0: Improved Peptide–MHC Class i Interaction Predictions Integrating Eluted Ligand and Peptide Binding Affinity Data.”</span> <em>The Journal of Immunology</em> 199 (9): 3360–68.
+</div>
+<div id="ref-keskin2019" class="csl-entry" role="listitem">
+Keskin, Derin B, Annabelle J Anandappa, Jing Sun, Itay Tirosh, Nathan D Mathewson, Shuqiang Li, Giacomo Oliveira, et al. 2019. <span>“Neoantigen Vaccine Generates Intratumoral t Cell Responses in Phase Ib Glioblastoma Trial.”</span> <em>Nature</em> 565 (7738): 234–39.
+</div>
+<div id="ref-latzer2024" class="csl-entry" role="listitem">
+Latzer, Pauline, Henning Zelba, Florian Battke, Annekathrin Reinhardt, Borong Shao, Oliver Bartsch, Armin Rabsteyn, et al. 2024. <span>“A Real-World Observation of Patients with Glioblastoma Treated with a Personalized Peptide Vaccine.”</span> <em>Nature Communications</em> 15 (1): 6870.
+</div>
+<div id="ref-nielsen2005" class="csl-entry" role="listitem">
+Nielsen, Morten, Claus Lundegaard, Ole Lund, and Can Keşmir. 2005. <span>“The Role of the Proteasome in Generating Cytotoxic t-Cell Epitopes: Insights Obtained from Improved Predictions of Proteasomal Cleavage.”</span> <em>Immunogenetics</em> 57 (1): 33–41.
+</div>
+<div id="ref-shah2025" class="csl-entry" role="listitem">
+Shah, Nadia, Jessica Sohl, Massimo Ganassi, Loredana Guglielmi, and Sara Badodi. 2025. <span>“Challenges and Innovations in Paediatric Brain Tumour Treatments.”</span> <em>Pharmaceutics</em> 17 (12): 1561.
+</div>
+<div id="ref-wang2020" class="csl-entry" role="listitem">
+Wang, Yuhao, Emily Hays, Martina Rama, and Benjamin Bonavida. 2020. <span>“Cell-Mediated Immune Resistance in Cancer.”</span> <em>Cancer Drug Resistance</em> 3 (2): 232.
+</div>
+<div id="ref-weber2024" class="csl-entry" role="listitem">
+Weber, Anna, Aurélien Pélissier, and Marı́a Rodrı́guez Martı́nez. 2024. <span>“T-Cell Receptor Binding Prediction: A Machine Learning Revolution.”</span> <em>ImmunoInformatics</em> 15: 100040.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
